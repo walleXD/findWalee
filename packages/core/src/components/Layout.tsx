@@ -1,6 +1,9 @@
 import React, { FC, ReactNode } from "react"
-import { Theme, makeStyles, Box } from "@material-ui/core"
+import { Theme, makeStyles, Box, Container } from "@material-ui/core"
 import { Helmet } from "react-helmet"
+
+import Footer from "./Footer"
+import NavBar from "./NavBar"
 
 interface Props {
   children: ReactNode
@@ -9,7 +12,7 @@ interface Props {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.default,
     height: "100vh",
   },
 }))
@@ -25,13 +28,17 @@ const Layout: FC<Props> = ({ children, pageTitle }) => {
         </Helmet>
       )}
 
-      <Box component="header">Hello</Box>
-
-      <Box flexGrow="1" component="main">
-        {children}
+      <Box component="header">
+        <NavBar />
       </Box>
 
-      <Box component="footer">NOOOOOO</Box>
+      <Box flexGrow="1" component="main">
+        <Container>{children}</Container>
+      </Box>
+
+      <Box component="footer">
+        <Footer />
+      </Box>
     </Box>
   )
 }
