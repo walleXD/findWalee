@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "jsx": "preserve",
+    "allowJs": true,
+    "isolatedModules": true,
+    "declaration": false,
+    "composite": false,
+    "declarationMap": false,
+    "noEmit": true,
+    "baseUrl": "src"
+  },
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts", "**/*.tsx", "plugins/*/*.ts", "plugins/*/*.ts"]
+}

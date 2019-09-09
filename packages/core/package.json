@@ -1,0 +1,41 @@
+{
+  "name": "@findwalee/core",
+  "private": true,
+  "description": "Finding Walee! :)",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "dev": "gatsby develop",
+    "start": "gatsby serve"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.4.1",
+    "@material-ui/icons": "^4.4.1",
+    "@material-ui/styles": "^4.4.1",
+    "@material-ui/system": "^4.3.3",
+    "gatsby": "^2.15.9",
+    "mdi-material-ui": "^6.6.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-helmet": "6.0.0-beta"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.4",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-helmet": "^5.0.9",
+    "eslint-plugin-graphql": "^3.0.3",
+    "gatsby-cli": "^2.7.44",
+    "gatsby-plugin-material-ui": "^2.1.6",
+    "gatsby-plugin-react-helmet": "^3.1.6",
+    "gatsby-plugin-typescript": "^2.1.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wallexd/findWalee"
+  },
+  "bugs": {
+    "url": "https://github.com/wallexd/findWalee/issues"
+  }
+}
