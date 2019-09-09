@@ -8,12 +8,17 @@ interface Props {
   children: ReactNode
 }
 
+const supportsDarkMode = (): boolean =>
+  window.matchMedia("(prefers-color-scheme: dark)").matches === true
+
 const DEFAULT_THEME = "dark"
 const DarkModeContext = createContext({ isDark: false, toggleTheme: () => {} })
 
 const TopLayout: FC<Props> = ({ children }) => {
   const [isDark, updateIsDark] = useState(
-    JSON.parse(localStorage.getItem("isDark") || "true")
+    JSON.parse(
+      localStorage.getItem("isDark") || `${supportsDarkMode()}` || "false"
+    )
   )
 
   const toggleTheme = (): void => {
