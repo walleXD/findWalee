@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types, @typescript-eslint/explicit-function-return-type */
-
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from "react"
-import TopLayout from "./TopLayout"
+
+import RootLayout from "./RootLayout"
 
 export const wrapRootElement = ({ element }) => {
-  return <TopLayout>{element}</TopLayout>
+  return <RootLayout>{element}</RootLayout>
 }

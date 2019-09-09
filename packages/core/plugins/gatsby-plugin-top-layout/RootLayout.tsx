@@ -2,6 +2,7 @@ import React, { ReactNode, FC, useState, useEffect, createContext } from "react"
 import { Helmet } from "react-helmet"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import { ThemeProvider } from "@material-ui/styles"
+
 import { light, dark } from "../../src/lib/theme"
 
 interface Props {
@@ -11,33 +12,44 @@ interface Props {
 const supportsDarkMode = (): boolean =>
   window.matchMedia("(prefers-color-scheme: dark)").matches === true
 
-const DEFAULT_THEME = "dark"
-const DarkModeContext = createContext({ isDark: false, toggleTheme: () => {} })
+const DarkModeContext = createContext({
+  isDark: false,
+  toggleTheme: () => {},
+  isAuto: true,
+  toggleAuto: () => {},
+})
 
-const TopLayout: FC<Props> = ({ children }) => {
-  const [isDark, updateIsDark] = useState(
-    JSON.parse(
-      localStorage.getItem("isDark") || `${supportsDarkMode()}` || "false"
-    )
-  )
+const RootLayout: FC<Props> = ({ children }) => {
+  const [isDark, updateIsDark] = useState<boolean>(false)
+  const [isAuto, updateIsAuto] = useState<boolean>(true)
 
   const toggleTheme = (): void => {
     updateIsDark(!isDark)
     localStorage.setItem("isDark", JSON.stringify(isDark))
   }
 
+  const toggleAuto = (): void => {
+    updateIsAuto(!isAuto)
+    localStorage.setItem("isAuto", JSON.stringify(isAuto))
+  }
+
   useEffect(() => {
-    if (!localStorage.getItem("isDark")) {
-      localStorage.setItem(
-        "isDark",
-        DEFAULT_THEME === "dark" ? "true" : "false"
+    const isDarkLocal = JSON.parse(
+        localStorage.getItem("isDark") || `${isDark}`
+      ),
+      isAutoThemeLocal = JSON.parse(
+        localStorage.getItem("isAuto") || `${isAuto}`
       )
-    }
-  })
+
+    // all request will start w/ auto theme
+    if (isAutoThemeLocal) updateIsDark(supportsDarkMode())
+    // user pref will be used
+    else updateIsDark(isDarkLocal)
+  }, [isDark, isAuto])
 
   return (
     <>
-      <Helmet>
+      <Helmet titleTemplate="%s | FindWalee" defaultTitle="FindWalee">
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
@@ -47,9 +59,10 @@ const TopLayout: FC<Props> = ({ children }) => {
           rel="stylesheet"
         />
       </Helmet>
-      <DarkModeContext.Provider value={{ isDark, toggleTheme }}>
+      <DarkModeContext.Provider
+        value={{ isDark, toggleTheme, isAuto, toggleAuto }}
+      >
         <ThemeProvider theme={isDark ? dark : light}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           {children}
         </ThemeProvider>
@@ -58,4 +71,4 @@ const TopLayout: FC<Props> = ({ children }) => {
   )
 }
 
-export default TopLayout
+export default RootLayout
