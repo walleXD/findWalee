@@ -1,10 +1,13 @@
 import React, { ReactElement } from "react"
 import { Typography, Box } from "@material-ui/core"
+import Layout from "../components/Layout"
 
 const LandingPage = (): ReactElement => (
-  <Box>
-    <Typography>Hello world!</Typography>
-  </Box>
+  <Layout>
+    <Box>
+      <Typography>Hello world!</Typography>
+    </Box>
+  </Layout>
 )
 
 export default LandingPage
