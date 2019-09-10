@@ -1,12 +1,5 @@
 import React, { ReactElement } from "react"
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Box,
-  Link,
-  makeStyles,
-} from "@material-ui/core"
+import { Toolbar, Typography, Link, makeStyles } from "@material-ui/core"
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -48,19 +41,18 @@ const NavBar = (): ReactElement => {
   const classes = useStyles()
 
   return (
-    <AppBar>
-      <Toolbar>
-        <Box flex="1">
-          <Typography
-            component="h2"
-            variant="h4"
-            color="inherit"
-            align="center"
-            noWrap
-          >
-            Walee 🤖
-          </Typography>
-        </Box>
+    <>
+      <Toolbar className={classes.toolbar}>
+        <Typography
+          component="h2"
+          variant="h4"
+          color="inherit"
+          align="center"
+          noWrap
+          className={classes.toolbarTitle}
+        >
+          Walee 🤖
+        </Typography>
       </Toolbar>
       <Toolbar
         component="nav"
@@ -80,7 +72,7 @@ const NavBar = (): ReactElement => {
           </Link>
         ))}
       </Toolbar>
-    </AppBar>
+    </>
   )
 }
 

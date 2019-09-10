@@ -13,5 +13,11 @@
     "baseUrl": "src"
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", "plugins/*/*.ts", "plugins/*/*.ts"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "plugins/*/*.ts",
+    "plugins/*/*.ts",
+    "**/*.d.ts"
+  ]
 }
